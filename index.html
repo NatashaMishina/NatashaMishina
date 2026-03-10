@@ -441,6 +441,7 @@ toggle.addEventListener("click", () => {
     e.stopPropagation();
     video.src = "video/promo2.mp4";
     modal.style.display = "flex";
+	video.play();
   });
 
   function closeVideo() {
@@ -578,4 +579,5 @@ track.addEventListener("touchend", () => isPaused = false);
 </body>
 
 </html>
+
 
