@@ -50,7 +50,11 @@
   </section>
 
   <!-- PROMO VIDEO -->
-  <section id="video" class="promo">
+<div class="video-modal" id="videoModal">
+  <video id="modalVideo" playsinline></video>
+</div>
+
+<section id="video" class="promo">
   <div class="promo-video">
     <img src="images/video.webp" alt="">
     <div class="play-button"></div>
@@ -433,23 +437,30 @@ toggle.addEventListener("click", () => {
 </div>
 
 <script>
-  const modal = document.getElementById("videoModal");
-  const video = document.getElementById("modalVideo");
-  const promoButton = document.querySelector(".play-button");
+const modal = document.getElementById("videoModal");
+const video = document.getElementById("modalVideo");
+const promoButton = document.querySelector(".play-button");
 
-  promoButton.addEventListener("click", (e) => {
-    e.stopPropagation();
-    video.src = "video/promo2.mp4";
-    modal.style.display = "flex";
-	video.play();
-  });
+promoButton.addEventListener("click", (e) => {
+  e.stopPropagation();
+  video.src = "video/promo2.mp4"; // путь к видео должен быть точным
+  modal.style.display = "flex";
+  video.muted = true; // разрешаем autoplay браузером
+  video.play().catch(err => console.log(err)); // явно запускаем видео
+  video.requestFullscreen?.(); // полноэкранно (опционально)
+});
 
-  function closeVideo() {
-    modal.style.display = "none";
-    video.pause();
-    video.currentTime = 0;
-    video.src = "";
-  }
+function closeVideo() {
+  modal.style.display = "none";
+  video.pause();
+  video.currentTime = 0;
+  video.src = "";
+}
+
+modal.addEventListener("click", closeVideo);
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape") closeVideo();
+});
 
   modal.addEventListener("click", closeVideo);
 
@@ -579,5 +590,6 @@ track.addEventListener("touchend", () => isPaused = false);
 </body>
 
 </html>
+
 
 
