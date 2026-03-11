@@ -59,12 +59,36 @@
   <video id="modalVideo" playsinline></video>
 </div>-->
 
-<section id="video" class="promo">
+<!-- <section id="video" class="promo">
   <div class="promo-video">
     <img src="images/video.webp" alt="">
     <div class="play-button"></div>
   </div>
+</section> -->
+
+<section class="promo">
+  <div class="promo-container">
+  <!-- preview -->
+    <div class="promo-preview">
+      <img src="images/video.webp" class="promo-image" alt="">
+      <video class="promo-preview-video" muted loop playsinline preload="none">
+        <source src="video/promo2.mp4" type="video/mp4">
+      </video>
+      <div class="promo-play"></div>
+    </div>
+  </div>
 </section>
+
+
+<!-- MODAL VIDEO -->
+
+<div class="video-modal" id="videoModal">
+  <div class="video-modal-content">
+    <video id="mainVideo" controls>
+      <source src="video/promo2.mp4" type="video/mp4">
+    </video>
+  </div>
+</div>
 
   <!-- LIVE VIDEO STRIP -->
   <section class="live">
@@ -403,9 +427,9 @@ toggle.addEventListener("click", () => {
 </script>
 
  <!-- FULLSCREEN VIDEO MODAL -->
-<div class="video-modal" id="videoModal">
+<!--<div class="video-modal" id="videoModal">
   <video id="modalVideo" autoplay playsinline></video>
-</div>
+</div> -->
 
 <!-- <script>
   const modal = document.getElementById("videoModal");
@@ -459,7 +483,7 @@ document.addEventListener("keydown", (e) => {
 });
 </script> -->
 
-<script>
+<!-- <script>
 
 const modal = document.getElementById("videoModal");
 const video = document.getElementById("modalVideo");
@@ -494,6 +518,66 @@ document.addEventListener("keydown", (e)=>{
 
 if(e.key==="Escape"){
 closeVideo();
+}
+
+});
+
+</script> -->
+
+<script>
+
+const previewVideo = document.querySelector(".promo-preview-video");
+const previewBlock = document.querySelector(".promo-preview");
+const playButton = document.querySelector(".promo-play");
+
+const modal = document.getElementById("videoModal");
+const mainVideo = document.getElementById("mainVideo");
+
+/* запуск preview */
+
+previewBlock.addEventListener("mouseenter", () => {
+
+previewVideo.style.opacity = 1;
+previewVideo.play();
+
+});
+
+previewBlock.addEventListener("mouseleave", () => {
+
+previewVideo.pause();
+previewVideo.currentTime = 0;
+previewVideo.style.opacity = 0;
+
+});
+
+/* запуск основного видео */
+
+playButton.addEventListener("click", () => {
+
+modal.style.display = "flex";
+
+mainVideo.currentTime = 0;
+mainVideo.play();
+
+});
+
+/* закрытие */
+
+modal.addEventListener("click", () => {
+
+modal.style.display = "none";
+
+mainVideo.pause();
+
+});
+
+document.addEventListener("keydown", (e) => {
+
+if(e.key === "Escape"){
+
+modal.style.display = "none";
+mainVideo.pause();
+
 }
 
 });
