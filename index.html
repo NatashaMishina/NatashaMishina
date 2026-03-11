@@ -39,7 +39,15 @@
 
   </div>
 </header>
+<!-- Хуйня из под коня -->
+	    video {
+      max-width: 90%;
+      max-height: 90%;
+      border-radius: 8px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.5);
+    }
 
+	
   <!-- HERO -->
   <section class="hero">
     <div class="hero-content">
@@ -426,6 +434,24 @@ toggle.addEventListener("click", () => {
 });
 </script>
 
+	<!-- хуйня их под коня -->
+	<video id="promoVideo" autoplay muted loop controls>
+    <source src="video/promo2.mp4" type="video/mp4">
+    Ваш браузер не поддерживает видео.
+  </video>
+
+  <script>
+    // Ждём, пока DOM полностью загрузится
+    document.addEventListener('DOMContentLoaded', () => {
+      const video = document.getElementById('promoVideo');
+
+      // Пытаемся воспроизвести видео, подавляем возможные ошибки автоплея
+      video.play().catch(err => {
+        console.log('Автоплей заблокирован:', err);
+      });
+    });
+  </script>
+	
  <!-- FULLSCREEN VIDEO MODAL -->
 <!--<div class="video-modal" id="videoModal">
   <video id="modalVideo" autoplay playsinline></video>
@@ -774,4 +800,5 @@ isPaused = false;
 
 </body>
 </html>
+
 
