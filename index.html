@@ -50,9 +50,14 @@
   </section>
 
   <!-- PROMO VIDEO -->
-<div class="video-modal" id="videoModal">
+  <!-- <section id="video" class="promo"> 
+  <div class="promo-video">
+    <img src="images/video.webp" alt="">
+    <div class="play-button"></div>
+  </div>
+  <div class="video-modal" id="videoModal">
   <video id="modalVideo" playsinline></video>
-</div>
+</div>-->
 
 <section id="video" class="promo">
   <div class="promo-video">
@@ -132,40 +137,6 @@
   </div>
   </div>
 </section>
-
-  <!-- FORMATS
-  <section class="formats">
-    <div class="h2">
-      <h2>Форматы</h2>
-    </div>
-      <div class="format-grid">
-
-        <div class="format-card">
-          <h3>Lounge & Welcome</h3>
-          <p>
-            Живой вокал для камерных мероприятий, welcome-зон и частных событий.
-            Спокойный формат, создающий атмосферу.
-          </p>
-        </div>
-
-        <div class="format-card">
-          <h3>Вечера в ресторанах и барах</h3>
-          <p>
-            Музыкальное оформление ресторанов, лаунж-баров и арт-пространств. 
-            От фонового сопровождения до сольных концертов.
-          </p>
-        </div>
-
-        <div class="format-card">
-          <h3>Кавер-группа «Контрабанда»</h3>
-          <p>
-    	    Живая музыка на свадьбу, юбилей, корпоратив, Open Air и другие события. 
-    	    Драйв, энергия и эмоции, которые запоминаются надолго.
-          </p>
-        </div>
-
-      </div>  
-  </section>-->
 
 <!-- PHOTO -->
 <section id="photo" class="gallery-section">
@@ -308,7 +279,7 @@
 
   <h2 class="reviews-title">Отзывы</h2>
 
-  <div class="reviews-slider">
+  <div class="reviews-viewport">
 
     <div class="reviews-track">
 
@@ -394,7 +365,7 @@
         Райдер
       </a>
 
-      <a href="docs/Repertuar_Natasha_Mishina.pdf" class="doc-button" target="_blank">
+      <a href="docs/Repertuar_Natasha_mishina.pdf" class="doc-button" target="_blank">
         Репертуар
       </a>
 
@@ -411,10 +382,10 @@
       <a href="tel:+79126638408" class="btn">Позвонить</a>
       
       <div class="social-icons">
-        <a href="https://vk.ru/nota_voice" target="_blank"><img src="vk2.png" alt="Social" loading="lazy"></a>
-        <a href="https://t.me/natashamishina" target="_blank"><img src="tg2.png" alt="Social" loading="lazy"></a>
-        <a href="https://www.instagram.com/mishina_singer_life" target="_blank"><img src="ig2.png" alt="Social" loading="lazy"></a>
-        <a href="https://max.ru/u/f9LHodD0cOLI96FzPlgt_cNXme4rmi08FYmA_kPNHyrJVu7IREfZ_6PxoZs" target="_blank"><img src="max2.png" alt="Social" loading="lazy"></a>
+        <a href="https://vk.ru/nota_voice"><img src="vk2.png" alt="Social" loading="lazy"></a>
+        <a href="https://t.me/natashamishina"><img src="tg2.png" alt="Social" loading="lazy"></a>
+        <a href="https://www.instagram.com/mishina_singer_life"><img src="ig2.png" alt="Social" loading="lazy"></a>
+        <a href="https://max.ru/u/f9LHodD0cOLI96FzPlgt_cNXme4rmi08FYmA_kPNHyrJVu7IREfZ_6PxoZs"><img src="max2.png" alt="Social" loading="lazy"></a>
       </div>
     </div>
   </div>
@@ -436,7 +407,32 @@ toggle.addEventListener("click", () => {
   <video id="modalVideo" autoplay playsinline></video>
 </div>
 
-<script>
+<!-- <script>
+  const modal = document.getElementById("videoModal");
+  const video = document.getElementById("modalVideo");
+  const promoButton = document.querySelector(".play-button");
+
+  promoButton.addEventListener("click", (e) => {
+    e.stopPropagation();
+    video.src = "video/promo.mp4";
+    modal.style.display = "flex";
+  });
+
+  function closeVideo() {
+    modal.style.display = "none";
+    video.pause();
+    video.currentTime = 0;
+    video.src = "";
+  }
+
+  modal.addEventListener("click", closeVideo);
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") closeVideo();
+  });
+</script> -->
+
+<!-- <script>
 const modal = document.getElementById("videoModal");
 const video = document.getElementById("modalVideo");
 const promoButton = document.querySelector(".play-button");
@@ -461,12 +457,47 @@ modal.addEventListener("click", closeVideo);
 document.addEventListener("keydown", (e) => {
   if (e.key === "Escape") closeVideo();
 });
+</script> -->
 
-  modal.addEventListener("click", closeVideo);
+<script>
 
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape") closeVideo();
-  });
+const modal = document.getElementById("videoModal");
+const video = document.getElementById("modalVideo");
+const promoButton = document.querySelector(".play-button");
+
+promoButton.addEventListener("click", (e) => {
+
+e.stopPropagation();
+
+video.src = "video/promo2.mp4";
+
+modal.style.display = "flex";
+
+video.muted = false;
+video.play();
+
+});
+
+function closeVideo(){
+
+modal.style.display = "none";
+
+video.pause();
+video.currentTime = 0;
+video.src = "";
+
+}
+
+modal.addEventListener("click", closeVideo);
+
+document.addEventListener("keydown", (e)=>{
+
+if(e.key==="Escape"){
+closeVideo();
+}
+
+});
+
 </script>
 
 <!-- VK VIDEO MODAL -->
@@ -513,17 +544,6 @@ document.addEventListener("keydown", (e) => {
 <!-- imagesLoaded (чтобы Masonry ждал загрузки картинок) -->
 <script src="https://unpkg.com/imagesloaded@5/imagesloaded.pkgd.min.js"></script>
 
-<script>
-var grid = document.querySelector('.grid-gallery');
-
-imagesLoaded(grid, function() {
-  new Masonry(grid, {
-    itemSelector: '.grid-item',
-    columnWidth: '.grid-sizer',
-    percentPosition: true
-  });
-});
-</script>
 
 <script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
 <script>
@@ -547,49 +567,126 @@ const lightbox = GLightbox({
 </script>
 
 <!-- SCRIPT AUTOSCROLL Reviews-->
+
+<!-- <script src="reviews.js"></script> -->
+
 <script>
 
 document.addEventListener("DOMContentLoaded", () => {
 
 const track = document.querySelector(".reviews-track");
+const viewport = document.querySelector(".reviews-viewport");
 
-let speed = 0.3;
-let animation;
+let position = 0;
+let speed = 0.35;
+
 let isPaused = false;
+let isDragging = false;
 
-function autoScroll(){
+let startX = 0;
+let dragStart = 0;
 
-if(!isPaused){
+/* автопрокрутка */
 
-track.scrollLeft += speed;
+function animate(){
 
-if(track.scrollLeft >= track.scrollWidth - track.clientWidth){
-track.scrollLeft = 0;
+if(!isPaused && !isDragging){
+
+position -= speed;
+
+if(Math.abs(position) >= track.scrollWidth / 2){
+position = 0;
 }
 
-}
-
-animation = requestAnimationFrame(autoScroll);
+track.style.transform = `translateX(${position}px)`;
 
 }
 
-autoScroll();
+requestAnimationFrame(animate);
 
-track.addEventListener("mouseenter", () => isPaused = true);
-track.addEventListener("mouseleave", () => isPaused = false);
+}
 
-track.addEventListener("touchstart", () => isPaused = true);
-track.addEventListener("touchend", () => isPaused = false);
+animate();
+
+/* пауза при наведении */
+
+viewport.addEventListener("mouseenter", () => {
+isPaused = true;
+});
+
+viewport.addEventListener("mouseleave", () => {
+isPaused = false;
+});
+
+/* перетаскивание мышкой */
+
+viewport.addEventListener("mousedown", (e) => {
+
+isDragging = true;
+isPaused = true;
+
+startX = e.clientX;
+dragStart = position;
+
+viewport.style.cursor = "grabbing";
+
+});
+
+document.addEventListener("mousemove", (e) => {
+
+if(!isDragging) return;
+
+let delta = e.clientX - startX;
+
+position = dragStart + delta;
+
+track.style.transform = `translateX(${position}px)`;
+
+});
+
+document.addEventListener("mouseup", () => {
+
+isDragging = false;
+isPaused = false;
+
+viewport.style.cursor = "grab";
+
+});
+
+/* свайпы на мобильных */
+
+viewport.addEventListener("touchstart", (e) => {
+
+isDragging = true;
+isPaused = true;
+
+startX = e.touches[0].clientX;
+dragStart = position;
+
+});
+
+viewport.addEventListener("touchmove", (e) => {
+
+if(!isDragging) return;
+
+let delta = e.touches[0].clientX - startX;
+
+position = dragStart + delta;
+
+track.style.transform = `translateX(${position}px)`;
+
+});
+
+viewport.addEventListener("touchend", () => {
+
+isDragging = false;
+isPaused = false;
+
+});
 
 });
 
 </script>
 
-<script src="reviews.js"></script>
-
 </body>
-
 </html>
-
-
-
